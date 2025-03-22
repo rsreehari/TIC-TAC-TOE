@@ -43,7 +43,7 @@ body {
     position: relative;
     z-index: 1;
     width: 90%;
-    max-width: 600px;
+    max-width: 400px; /* Adjusted for better alignment */
     margin: 0 auto;
   }
   
@@ -71,11 +71,12 @@ body {
   /* Board */
   .board {
     display: grid;
-    grid-template-columns: repeat(3, minmax(80px, 120px));
-    grid-template-rows: repeat(3, minmax(80px, 120px));
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     gap: 10px;
     margin-bottom: 2rem;
-    perspective: 1000px;
+    width: 100%;
+    aspect-ratio: 1; /* Ensures the board is a perfect square */
   }
   
   /* Cells */
@@ -90,6 +91,7 @@ body {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     position: relative;
     transform-style: preserve-3d;
+    aspect-ratio: 1; /* Ensures cells are perfect squares */
   }
   
   .cell:hover {
@@ -172,8 +174,7 @@ body {
     }
   
     .board {
-      grid-template-columns: repeat(3, minmax(60px, 80px));
-      grid-template-rows: repeat(3, minmax(60px, 80px));
+      gap: 8px; /* Smaller gap for smaller screens */
     }
   
     .reset-btn {
