@@ -22,10 +22,26 @@ const handleCellClick = (e) => {
   if (gameState[clickedCellIndex] !== '' || !gameActive) return;
 
   gameState[clickedCellIndex] = currentPlayer;
-  clickedCell.textContent = currentPlayer;
-  clickedCell.classList.add(currentPlayer);
-
+  renderSymbol(clickedCell, currentPlayer);
   checkForWinner();
+};
+
+const renderSymbol = (cell, player) => {
+  if (player === 'X') {
+    cell.innerHTML = `
+      <svg viewBox="0 0 100 100">
+        <line x1="10" y1="10" x2="90" y2="90" />
+        <line x1="90" y1="10" x2="10" y2="90" />
+      </svg>
+    `;
+  } else {
+    cell.innerHTML = `
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" />
+      </svg>
+    `;
+  }
+  cell.classList.add(player);
 };
 
 const checkForWinner = () => {
@@ -67,7 +83,7 @@ const resetGame = () => {
   statusText.textContent = `Player ${currentPlayer}'s Turn`;
   playerDisplay.textContent = currentPlayer;
   cells.forEach(cell => {
-    cell.textContent = '';
+    cell.innerHTML = '';
     cell.classList.remove('X', 'O', 'win');
   });
 };
